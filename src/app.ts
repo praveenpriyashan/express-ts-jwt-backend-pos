@@ -1,11 +1,12 @@
 import express, {Request, Response, NextFunction} from 'express'
 import "dotenv/config";
-import routes from "./routes/routes"
+import UserRoutes from "./routes/UserRoutes"
 import createHttpError, {isHttpError} from "http-errors";
+
 
 const app = express();
 app.use(express.json());
-app.use(routes)
+app.use("/users",UserRoutes)
 app.use((req: Request, res: Response, next: NextFunction) => {
         next(createHttpError(404, "endpoint not found"))
     }
